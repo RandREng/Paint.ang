@@ -1,0 +1,28 @@
+<div class="clients card class container col-12">
+  <div class="card-body">
+    <div class="alert alert-warning clients-alert" role="alert" [hidden]="!errorReceived">
+      Error requesting order list, please try later on
+    </div>
+    <table>
+      <thead>
+        <tr clase='clients-titles row'>
+          <td class="clients-title col-4">Company Name</td>
+          <td class="clients-title col-4">Type</td>
+          <td class="clients-title col-4">Actions</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="clients-items row" *ngFor="let client of clients">
+          <td class="clients-item col-4">{{client.companyName}}</td>
+          <td class="clients-item col-4">{{client.type}}</td>
+          <td class="clients-item col-2">
+            <a class="clients-link" routerLink="/clients/details/{{client.id}}">Detail</a>
+          </td>
+          <td class="clients-item col-2">
+            <a class="clients-link" routerLink="/clients/edit/{{client.id}}">Edit</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

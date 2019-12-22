@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/a11d7884-bf47-403e-aaa2-9ffe6ea6f821/resourceGroups/Paint/providers/Microsoft.Web/sites/PaintSpa",
+    "appService.deploySubpath": "dist\\testang"
+}
