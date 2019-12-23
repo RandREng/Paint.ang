@@ -1,1 +1,30 @@
 <p>client-detail works!</p>
+
+<div class="jobs container col-12">
+  <div>
+    <div class="alert alert-warning jobs-alert" role="alert" *ngIf="errorReceived">
+      Error requesting order list, please try later on
+    </div>
+    <article class="jobs-titles row">
+      <section class="jobs-title col-4">Address</section>
+      <section class="jobs-title col-2">City</section>
+      <section class="jobs-title col-1">State</section>
+      <section class="jobs-title col-1">zip</section>
+      <section class="jobs-title col-2">Actions</section>
+    </article>
+
+    <article class="jobs-items row" *ngFor="let job of client.jobsPage.results">
+      <section class="jobs-item col-4">{{job.address}}</section>
+      <section class="jobs-item col-2">{{job.city}}</section>
+      <section class="jobs-item col-1">{{job.state}}</section>
+      <section class="jobs-item col-1">{{job.zip}}</section>
+      <section class="jobs-item col-1">
+        <a class="jobs-link" routerLink="/jobs/details/{{job.id}}">Detail</a>
+      </section>
+      <section class="jobs-item col-1">
+        <a class="jobs-link" routerLink="/jobs/edit/{{job.id}}">Edit</a>
+      </section>
+    </article>
+  </div>
+
+</div>

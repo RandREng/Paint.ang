@@ -5,7 +5,6 @@ import { MsalModule, MsalInterceptor } from '../msal-angular';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ApiComponent } from './api/api.component';
 import { ApiService } from './Services/api.service';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
@@ -15,16 +14,16 @@ import { ClientEditComponent } from './client/client-edit/client-edit.component'
 import { HomeComponent } from './home/home.component';
 import { JobDetailComponent } from './job/job-detail/job-detail.component';
 import { JobEditComponent } from './job/job-edit/job-edit.component';
+import { environment } from 'src/environments/environment';
 
 export const protectedResourceMap: Map<string, Array<string>> = new Map(
   [
-    ['https://paintapi20191220121929.azurewebsites.net/api/', ['api://1838cc89-3e58-4edf-bc3d-6375c6df9cc4/api-access']]
+    [`${environment.apiUrl}/api/`, ['api://1838cc89-3e58-4edf-bc3d-6375c6df9cc4/api-access']]
   ]);
 
 @NgModule({
   declarations: [
     AppComponent,
-    ApiComponent,
     HeaderComponent,
     FooterComponent,
     ClientListComponent,
@@ -39,11 +38,10 @@ export const protectedResourceMap: Map<string, Array<string>> = new Map(
       auth: {
         clientId: '8b16e065-1a59-4f1c-a619-a50f918b9984',
         authority: 'https://login.microsoftonline.com/e3d53bb7-38c6-4c96-8a81-94089d81b8ff',
-        redirectUri: "http://localhost:4200/",
-//        redirectUri: "https://paint-spa.azurewebsites.net/",
+        redirectUri: environment.redirectUri
       },
       framework: {
-        protectedResourceMap: protectedResourceMap
+        protectedResourceMap
       }
     }
       ,

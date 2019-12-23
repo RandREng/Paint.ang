@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
 import { WeatherForecast } from './models/weatherForecast.model';
 import { ClientItem } from './models/ClientItem.model';
+import { environment } from 'src/environments/environment';
+import { ClientDetails } from './models/ClientDetails.models';
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +13,16 @@ import { ClientItem } from './models/ClientItem.model';
 export class ApiService {
   url: string;
   constructor(private http: HttpClient) {
-    this.url = "https://paintapi20191220121929.azurewebsites.net";
+    this.url = environment.apiUrl;
   }
 
   getClients(): Observable<ClientItem[]> {
     return this.http.get<Array<ClientItem>>(`${this.url}/api/clients`);
-}
+  }
+
+  getClient(id: number, page: number): Observable<ClientDetails> {
+    return this.http.get<ClientDetails>(`${this.url}/api/clients/${id}?page=${page}`);
+  }
 
 
   getWeatherHttps(): Observable<Array<WeatherForecast>> {
