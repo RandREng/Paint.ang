@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { BroadcastService, MsalService } from '../..//msal-angular';
+import { AuthError, AuthResponse } from 'msal';
 
 @Component({
   selector: 'app-header',
@@ -15,7 +16,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public userName: string = '';
   badge: number = 0;
 
-  constructor(private broadcastService: BroadcastService, private authService: MsalService) { }
+  constructor(private broadcastService: BroadcastService, private authService: MsalService) {
+    if (this.authService.getAccount()) {
+      this.IsAuthenticated = true;
+      this.userName = this.authService.getAccount().name;
+    } else {
+      this.IsAuthenticated = false;
+    }
+  }
 
   ngOnInit() {
 
@@ -31,12 +39,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
       this.userName = this.authService.getAccount().name;
     });
 
-    if (this.authService.getAccount()) {
-      this.IsAuthenticated = true;
-      this.userName = this.authService.getAccount().name;
-    } else {
-     this.IsAuthenticated = false;
-   }
+    this.authService.handleRedirectCallback((redirectError: AuthError, redirectResponse: AuthResponse) => {
+      if (redirectError) {
+        console.error(redirectError);
+        return;
+      }
+      console.log(redirectResponse);
+    });
 
   }
 
@@ -63,7 +72,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   logout() {
-   this.authService.logout();
+    this.authService.logout();
   }
 
 }
