@@ -13,7 +13,7 @@
       <section class="jobs-title col-2">Actions</section>
     </article>
 
-    <article class="jobs-items row" *ngFor="let job of client.jobsPage.results">
+    <article class="jobs-items row" *ngFor="let job of client?.jobsPage?.results">
       <section class="jobs-item col-4">{{job.address}}</section>
       <section class="jobs-item col-2">{{job.city}}</section>
       <section class="jobs-item col-1">{{job.state}}</section>
@@ -25,6 +25,14 @@
         <a class="jobs-link" routerLink="/jobs/edit/{{job.id}}">Edit</a>
       </section>
     </article>
+    <ngb-pagination  [(page)]="client.jobsPage.currentPage"
+    [pageSize]="client.jobsPage.pageSize"
+    [collectionSize]="client.jobsPage.rowCount"
+    [maxSize]="5"
+    [boundaryLinks]="true"
+    (pageChange)=pageChange()>
+
+    </ngb-pagination>
   </div>
 
 </div>

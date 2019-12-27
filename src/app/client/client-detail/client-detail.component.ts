@@ -35,4 +35,8 @@ export class ClientDetailComponent implements OnInit {
     );
   }
 
+  pageChange() {
+    this.getClient(this.client.id, this.client.jobsPage.currentPage);
+  }
+
 }
