@@ -17,6 +17,11 @@ import { JobDetailComponent } from './job/job-detail/job-detail.component';
 import { JobEditComponent } from './job/job-edit/job-edit.component';
 import { environment } from 'src/environments/environment';
 import { AuthOptions, CacheOptions, SystemOptions, FrameworkOptions, Configuration } from 'msal/lib-commonjs/Configuration';
+import { BidListComponent } from './bid/bid-list/bid-list.component';
+import { BidPagedListComponent } from './bid/bid-paged-list/bid-paged-list.component';
+import { BidDetailsComponent } from './bid/bid-details/bid-details.component';
+import { BidEditComponent } from './bid/bid-edit/bid-edit.component';
+import { AlertModule } from 'src/common/alert/alert.module';
 
 const isIE = window.navigator.userAgent.indexOf('MSIE ') > -1 || window.navigator.userAgent.indexOf('Trident/') > -1;
 
@@ -84,11 +89,15 @@ export const angularConfig: MsalAngularConfiguration = {
     HomeComponent,
     JobDetailComponent,
     JobEditComponent,
+    BidListComponent,
+    BidPagedListComponent,
+    BidDetailsComponent,
+    BidEditComponent,
   ],
   imports: [
     NgbModule,
     MsalModule.forRoot(config, angularConfig),
-
+    AlertModule.forRoot(),
     HttpClientModule,
     BrowserModule,
     AppRoutingModule

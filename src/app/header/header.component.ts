@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 
 import { BroadcastService, MsalService } from '../..//msal-angular';
 import { AuthError, AuthResponse } from 'msal';
+import { AlertService } from 'src/common/alert/alert.service';
 
 @Component({
   selector: 'app-header',
@@ -16,7 +17,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public userName: string = '';
   badge: number = 0;
 
-  constructor(private broadcastService: BroadcastService, private authService: MsalService) {
+  constructor(private broadcastService: BroadcastService, private authService: MsalService, private alertService: AlertService) {
     if (this.authService.getAccount()) {
       this.IsAuthenticated = true;
       this.userName = this.authService.getAccount().name;
@@ -35,6 +36,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
     this.broadcastService.subscribe('msal:loginSuccess', (payload) => {
       console.log('login success ' + JSON.stringify(payload));
+      this.alertService.AddSuccessMessage('login success ' );
       this.IsAuthenticated = true;
       this.userName = this.authService.getAccount().name;
     });

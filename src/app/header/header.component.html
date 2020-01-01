@@ -12,8 +12,12 @@
           <li class="nav-item active">
             <a class="nav-link" routerLink='home' routerLinkActive="active" (click)="isActive = true">Home</a>
           </li>
-          <li class="nav-item active">
+          <li *ngIf='IsAuthenticated' class="nav-item active">
             <a class="nav-link" routerLink='clients' routerLinkActive="active" (click)="isActive = true">Clients</a>
+          </li>
+
+          <li *ngIf='IsAuthenticated' class="nav-item active">
+            <a class="nav-link" routerLink='bids' routerLinkActive="active" (click)="isActive = true">Bids</a>
           </li>
 
           <li *ngIf='!IsAuthenticated' class="nav-item">

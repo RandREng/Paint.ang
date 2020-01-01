@@ -1,6 +1,6 @@
 import { ClientItem } from './ClientItem.model';
 import { JobItem } from './JobItem.model';
-import { PageResult } from './PageResult.models';
+import { PageResult } from './PageResult.model';
 
 export interface ClientDetails {
   id: number;

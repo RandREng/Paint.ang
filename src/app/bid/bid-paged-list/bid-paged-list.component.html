@@ -1,4 +1,3 @@
-<p>client-detail works!</p>
 
 <div class="jobs container col-12">
   <div>
@@ -13,21 +12,21 @@
       <section class="jobs-title col-2">Actions</section>
     </article>
 
-    <article class="jobs-items row" *ngFor="let job of client?.jobsPage?.results">
-      <section class="jobs-item col-4">{{job.address.line1}}</section>
-      <section class="jobs-item col-2">{{job.address.city}}</section>
-      <section class="jobs-item col-1">{{job.address.state}}</section>
-      <section class="jobs-item col-1">{{job.address.zip}}</section>
+    <article class="jobs-items row" *ngFor="let bid of data?.results">
+      <section class="jobs-item col-4">{{bid.address}}</section>
+      <section class="jobs-item col-2">{{bid.progjectManager}}</section>
+      <section class="jobs-item col-1">{{job.state}}</section>
+      <section class="jobs-item col-1">{{job.zip}}</section>
       <section class="jobs-item col-1">
-        <a class="jobs-link" routerLink="/jobs/details/{{job.id}}">Detail</a>
+        <a class="jobs-link" routerLink="/bids/details/{{bid.id}}">Detail</a>
       </section>
       <section class="jobs-item col-1">
-        <a class="jobs-link" routerLink="/jobs/edit/{{job.id}}">Edit</a>
+        <a class="jobs-link" routerLink="/bids/edit/{{bid.id}}">Edit</a>
       </section>
     </article>
-    <ngb-pagination  [(page)]="client?.jobsPage.currentPage"
-    [pageSize]="client?.jobsPage.pageSize"
-    [collectionSize]="client?.jobsPage.rowCount"
+    <ngb-pagination  [(page)]="data.currentPage"
+    [pageSize]="data.pageSize"
+    [collectionSize]="data.rowCount"
     [maxSize]="5"
     [boundaryLinks]="true"
     (pageChange)=pageChange()>
