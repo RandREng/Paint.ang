@@ -10,7 +10,6 @@ import { Observable } from 'rxjs';
   styleUrls: ['./client-list.component.scss']
 })
 export class ClientListComponent implements OnInit {
-  errorReceived: boolean;
   clients: ClientItem[];
 
   constructor(private service: ApiService) { }
@@ -20,17 +19,11 @@ export class ClientListComponent implements OnInit {
   }
 
   getClients() {
-    this.errorReceived = false;
     this.service.getClients()
       .subscribe(
         (clients => {
           this.clients = clients;
-        }),
-        (err => {
-          this.errorReceived = true;
-        }
-
-        )
+        })
       );
   }
 

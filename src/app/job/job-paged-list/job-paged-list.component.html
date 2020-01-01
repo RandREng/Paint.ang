@@ -1,0 +1,31 @@
+<div class="jobs container col-12">
+  <div>
+    <article class="jobs-titles row">
+      <section class="jobs-title col-4">Address</section>
+      <section class="jobs-title col-2">City</section>
+      <section class="jobs-title col-1">State</section>
+      <section class="jobs-title col-1">zip</section>
+      <section class="jobs-title col-2">Actions</section>
+    </article>
+
+    <article class="jobs-items row" *ngFor="let job of data?.results">
+      <section class="jobs-item col-4">{{job.address.line1}}</section>
+      <section class="jobs-item col-2">{{job.address.city}}</section>
+      <section class="jobs-item col-1">{{job.address.state}}</section>
+      <section class="jobs-item col-1">{{job.address.zip}}</section>
+      <section class="jobs-item col-1">
+        <a class="jobs-link" routerLink="/jobs/details/{{job.id}}">Detail</a>
+      </section>
+      <section class="jobs-item col-1">
+        <a class="jobs-link" routerLink="/jobs/edit/{{job.id}}">Edit</a>
+      </section>
+    </article>
+    <ngb-pagination  [(page)]="data.currentPage"
+    [pageSize]="data?.pageSize"
+    [collectionSize]="data?.rowCount"
+    [maxSize]="5"
+    [boundaryLinks]="true"
+    (pageChange)=pageChanged()>
+
+    </ngb-pagination>
+  </div>

@@ -12,5 +12,4 @@ export interface ClientDetails {
   active: boolean;
 //  phoneNumbers": [],
   clients: ClientItem[];
-  jobsPage: PageResult<JobItem>;
 }

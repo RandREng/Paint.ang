@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { PageResult } from 'src/app/Services/models/PageResult.model';
 import { BidListItem } from 'src/app/Services/models/BidListItem.model';
 
@@ -9,10 +9,14 @@ import { BidListItem } from 'src/app/Services/models/BidListItem.model';
 })
 export class BidPagedListComponent implements OnInit {
   @Input() data: PageResult<BidListItem>;
+  @Output()  pageChange = new EventEmitter();
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  pageChanged() {
+    this.pageChange.emit(this.data.currentPage);
+  }
 }

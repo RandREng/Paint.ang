@@ -1,2 +1,4 @@
-<p>bid-list works!</p>
-<app-bid-paged-list></app-bid-paged-list>
+
+<div *ngIf="bidPage" class="bid container col-12">
+  <app-bid-paged-list [data]="bidPage" (pageChange)="bidPageChange($event)"></app-bid-paged-list>
+</div>

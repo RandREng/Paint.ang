@@ -7,6 +7,9 @@ import { environment } from 'src/environments/environment';
 import { ClientDetails } from './models/ClientDetails.model';
 import { BidListItem, Bid } from './models/BidListItem.model';
 import { AlertService } from 'src/common/alert/alert.service';
+import { stringify } from 'querystring';
+import { JobItem } from './models/JobItem.model';
+import { PageResult } from './models/PageResult.model';
 
 @Injectable({
   providedIn: 'root'
@@ -20,30 +23,49 @@ export class ApiService {
 
   getClients(): Observable<ClientItem[]> {
     return this.http.get<Array<ClientItem>>(`${this.url}/api/clients`)
-    .pipe(
-      catchError(err => this.handleError(err))
-    );
+      .pipe(
+        catchError(err => this.handleError(err))
+      );
   }
 
-  getClient(id: number, page: number): Observable<ClientDetails> {
-    return this.http.get<ClientDetails>(`${this.url}/api/clients/${id}?page=${page}`)
-    .pipe(
-      catchError(err => this.handleError(err))
-    );
+  getClient(id: number): Observable<ClientDetails> {
+    return this.http.get<ClientDetails>(`${this.url}/api/clients/${id}`)
+      .pipe(
+        catchError(err => this.handleError(err))
+      );
   }
 
-  getBids(): Observable<BidListItem[]> {
-    return this.http.get<Array<BidListItem>>(`${this.url}/api/bids`)
-    .pipe(
-      catchError(err => this.handleError(err))
-    );
+  getBids(page: number, clientId?: number): Observable<PageResult<BidListItem>> {
+    let url: string;
+    if (clientId) {
+      url = `${this.url}/api/clients/${clientId}/bids/?page=${page}`;
+    } else {
+      url = `${this.url}/api/bids/?page=${page}`;
+    }
+    return this.http.get<PageResult<BidListItem>>(url)
+      .pipe(
+        catchError(err => this.handleError(err))
+      );
   }
 
   getBid(id: number): Observable<Bid> {
     return this.http.get<Bid>(`${this.url}/api/bids/${id}`)
-    .pipe(
-      catchError(err => this.handleError(err))
-    );
+      .pipe(
+        catchError(err => this.handleError(err))
+      );
+  }
+
+  getJobs(page: number, clientId?: number): Observable<PageResult<JobItem>> {
+    let url: string;
+    if (clientId) {
+      url = `${this.url}/api/clients/${clientId}/jobs/?page=${page}`;
+    } else {
+      url = `${this.url}/api/jobs/?page=${page}`;
+    }
+    return this.http.get<PageResult<JobItem>>(url)
+      .pipe(
+        catchError(err => this.handleError(err))
+      );
   }
 
   private handleError(error: HttpErrorResponse) {
@@ -60,6 +82,6 @@ export class ApiService {
     // return an observable with a user-facing error message
     return throwError(
       'Something bad happened; please try again later.');
-  };
+  }
 
 }

@@ -22,6 +22,8 @@ import { BidPagedListComponent } from './bid/bid-paged-list/bid-paged-list.compo
 import { BidDetailsComponent } from './bid/bid-details/bid-details.component';
 import { BidEditComponent } from './bid/bid-edit/bid-edit.component';
 import { AlertModule } from 'src/common/alert/alert.module';
+import { JobPagedListComponent } from './job/job-paged-list/job-paged-list.component';
+import { JobListComponent } from './job/job-list/job-list.component';
 
 const isIE = window.navigator.userAgent.indexOf('MSIE ') > -1 || window.navigator.userAgent.indexOf('Trident/') > -1;
 
@@ -93,6 +95,8 @@ export const angularConfig: MsalAngularConfiguration = {
     BidPagedListComponent,
     BidDetailsComponent,
     BidEditComponent,
+    JobPagedListComponent,
+    JobListComponent,
   ],
   imports: [
     NgbModule,
