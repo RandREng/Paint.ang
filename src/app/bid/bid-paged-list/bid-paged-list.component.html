@@ -1,32 +1,35 @@
-<div class="bids container col-12">
-  <div>
-    <article class="bids-titles row">
-      <section class="bids-title col-3">Project Manager</section>
-      <section class="bids-title col-3">Address</section>
-      <section class="bids-title col-2">City</section>
-      <section class="bids-title col-1">State</section>
-      <section class="bids-title col-1">zip</section>
-      <section class="bids-title col-1">Budget</section>
-      <section class="bids-title col-1">Actions</section>
-    </article>
+<div *ngIf='data' class="container col-12">
+  <table class="table table-striped paintTable">
+    <thead class="paintTable-header">
+      <tr class="paintTable-titles row">
+        <th *ngIf="!clientId" class="paintTable-title col-3" scope="col" sortable="name" (sort)="onSort($event)" >Project Manager</th>
+        <th class="paintTable-title col-3" scope="col" sortable="address" (sort)="onSort($event)" >Address</th>
+        <th class="paintTable-title col-2" scope="col" sortable="city" (sort)="onSort($event)" >City</th>
+        <th class="paintTable-title col-1">State</th>
+        <th class="paintTable-title col-1">zip</th>
+        <th class="paintTable-title col-1" scope="col" sortable="budget" (sort)="onSort($event)" >Budget</th>
+        <th class="paintTable-title col-1">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="paintTable-items row" *ngFor="let bid of data?.results">
+        <td *ngIf="!clientId" class="paintTable-item col-3">{{bid.progjectManager}}</td>
+        <td class="paintTable-item col-3">{{bid.address.line1}}</td>
+        <td class="paintTable-item col-2">{{bid.address.city}}</td>
+        <td class="paintTable-item col-1">{{bid.address.state}}</td>
+        <td class="paintTable-item col-1">{{bid.address.zip}}</td>
+        <td class="paintTable-item col-1">{{bid.renoTotal | currency}}</td>
+        <td class="paintTable-item col-1">
+          <a class="paintTable-link" routerLink="/bids/details/{{bid.id}}">Detail</a>
+          |
+          <a class="paintTable-link" routerLink="/bids/edit/{{bid.id}}">Edit</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <ngb-pagination [(page)]="page" [pageSize]="data?.pageSize" [collectionSize]="data?.rowCount"
+    [maxSize]="5" [boundaryLinks]="true" (pageChange)=pageChanged()>
 
-    <article class="bids-items row" *ngFor="let bid of data?.results">
-      <section class="bids-item col-3">{{bid.progjectManager}}</section>
-      <section class="bids-item col-3">{{bid.address.line1}}</section>
-      <section class="bids-item col-2">{{bid.address.city}}</section>
-      <section class="bids-item col-1">{{bid.address.state}}</section>
-      <section class="bids-item col-1">{{bid.address.zip}}</section>
-      <section class="bids-item col-1">{{bid.renoTotal}}</section>
-      <section class="bids-item col-1">
-        <a class="bids-link" routerLink="/bids/details/{{bid.id}}">Detail</a>
-        |
-        <a class="bids-link" routerLink="/bids/edit/{{bid.id}}">Edit</a>
-      </section>
-    </article>
-    <ngb-pagination [(page)]="data.currentPage" [pageSize]="data?.pageSize" [collectionSize]="data?.rowCount"
-      [maxSize]="5" [boundaryLinks]="true" (pageChange)=pageChanged()>
-
-    </ngb-pagination>
-  </div>
+  </ngb-pagination>
 
 </div>

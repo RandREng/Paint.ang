@@ -4,6 +4,6 @@
   <app-job-paged-list [data]="jobPage" (pageChange)="jobPageChange($event)"></app-job-paged-list>
 </div>
 
-<div *ngIf="bidPage" class="bid container col-12">
-  <app-bid-paged-list [data]="bidPage" (pageChange)="bidPageChange($event)"></app-bid-paged-list>
+<div class="bid container col-12">
+  <app-bid-paged-list [clientId]="id" ></app-bid-paged-list>
 </div>

@@ -1,21 +1,23 @@
-<div class="clients container col-12">
-  <div>
-    <article class="clients-titles row">
-      <section class="clients-title col-4">Company Name</section>
-      <section class="clients-title col-4">Type</section>
-      <section class="clients-title col-4">Actions</section>
-    </article>
-
-    <article class="clients-items row" *ngFor="let client of clients">
-      <section class="clients-item col-4">{{client.name}}</section>
-      <section class="clients-item col-4">{{client.clientType}}</section>
-      <section class="clients-item col-2">
-        <a class="clients-link" routerLink="/clients/details/{{client.id}}">Detail</a>
-      </section>
-      <section class="clients-item col-2">
-        <a class="clients-link" routerLink="/clients/edit/{{client.id}}">Edit</a>
-      </section>
-    </article>
-  </div>
-
+<div class="container col-12">
+  <table class="table table-striped paintTable">
+    <thead class="paintTable-header">
+      <tr class="paintTable-titles row">
+        <th class="paintTable-title col-4">Company Name</th>
+        <th class="paintTable-title col-4">Type</th>
+        <th class="paintTable-title col-4">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="paintTable-items row" *ngFor="let client of clients">
+        <td class="paintTable-item col-4">{{client.name}}</td>
+        <td class="paintTable-item col-4">{{client.clientType}}</td>
+        <td class="paintTable-item col-2">
+          <a class="paintTable-link" routerLink="/clients/details/{{client.id}}">Detail</a>
+        </td>
+        <td class="paintTable-item col-2">
+          <a class="" routerLink="/clients/edit/{{client.id}}">Edit</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>

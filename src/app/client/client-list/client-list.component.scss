@@ -3,6 +3,8 @@
 .clients {
     min-height: 80vh;
     overflow-x: hidden;
+    padding-top: 0;
+    padding-bottom: 0;
 
     $header-height: 4rem;
 
@@ -38,6 +40,7 @@
         height: $height;
         line-height: $height;
         position: relative;
+        vertical-align: middle;
 
         &:nth-of-type(2n + 1) {
             &:before {
@@ -55,8 +58,11 @@
     }
 
     &-item {
-        font-weight: $font-weight-semilight;
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
 
+        font-weight: $font-weight-semilight;
+        vertical-align: middle;
         &--hover {
             opacity: 0;
             pointer-events: none;
