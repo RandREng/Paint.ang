@@ -29,24 +29,21 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
     this.broadcastService.subscribe('msal:loginFailure', (payload) => {
-      console.log('login failure ' + JSON.stringify(payload));
+      this.alertService.AddErrorMessage('login failed ' );
       this.IsAuthenticated = false;
 
     });
 
     this.broadcastService.subscribe('msal:loginSuccess', (payload) => {
-      console.log('login success ' + JSON.stringify(payload));
-      this.alertService.AddSuccessMessage('login success ' );
       this.IsAuthenticated = true;
       this.userName = this.authService.getAccount().name;
     });
 
     this.authService.handleRedirectCallback((redirectError: AuthError, redirectResponse: AuthResponse) => {
       if (redirectError) {
-        console.error(redirectError);
+        this.alertService.AddErrorMessage(redirectError.message);
         return;
       }
-      console.log(redirectResponse);
     });
 
   }

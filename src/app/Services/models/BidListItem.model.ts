@@ -4,7 +4,7 @@ export interface BidListItem {
   id: number;
   jobId: number;
   address: Address;
-  progjectManager: string;
+  projectManager: string;
   date: Date;
   squareFoot: string;
   bedBath: string;
@@ -34,7 +34,7 @@ export interface BidAreaDto {
 export interface Bid {
   id: number;
   jobId: number;
-  address: string;
+  address: Address;
   progjectManager: string;
   date: Date;
   squareFoot: string;

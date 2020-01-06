@@ -26,7 +26,7 @@ th[sortable].desc:before {
 }
 
 .paintTable {
-  min-height: 80vh;
+//  min-height: 80vh;
   overflow-x: hidden;
   padding-top: 0;
   padding-bottom: 0;
@@ -89,6 +89,7 @@ th[sortable].desc:before {
   &-item {
     padding-top: 0 !important;
     padding-bottom: 0 !important;
+    text-transform: uppercase;
 
       font-weight: $font-weight-semilight;
       vertical-align: middle;

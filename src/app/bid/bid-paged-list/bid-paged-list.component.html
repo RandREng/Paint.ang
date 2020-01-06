@@ -13,7 +13,7 @@
     </thead>
     <tbody>
       <tr class="paintTable-items row" *ngFor="let bid of data?.results">
-        <td *ngIf="!clientId" class="paintTable-item col-3">{{bid.progjectManager}}</td>
+        <td *ngIf="!clientId" class="paintTable-item col-3">{{bid.projectManager}}</td>
         <td class="paintTable-item col-3">{{bid.address.line1}}</td>
         <td class="paintTable-item col-2">{{bid.address.city}}</td>
         <td class="paintTable-item col-1">{{bid.address.state}}</td>

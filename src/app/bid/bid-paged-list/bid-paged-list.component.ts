@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output, ViewChildren, QueryList } from '@angular/core';
 import { PageResult } from 'src/app/Services/models/PageResult.model';
 import { BidListItem } from 'src/app/Services/models/BidListItem.model';
-import { NgbdSortableHeader , SortEvent, SortDirection } from 'src/common/directives/sortable.directive';
+import { NgbdSortableHeader, SortEvent, SortDirection } from 'src/common/directives/sortable.directive';
 import { ApiService } from 'src/app/Services/api.service';
 
 export interface PageEvent extends SortEvent {
@@ -13,21 +13,16 @@ export interface PageEvent extends SortEvent {
   styleUrls: ['./bid-paged-list.component.scss']
 })
 export class BidPagedListComponent implements OnInit {
-  private _clientId?: number;
-
+  @ViewChildren(NgbdSortableHeader) headers: QueryList<NgbdSortableHeader>;
   @Input()
-    set clientId(val: number) {
-      console.log('input changed ' + val);
-      this._clientId = val;
-      this.getBidPage();
-    }
-    get clientId(): number {return this._clientId; }
+  set clientId(val: number) {
+    this._clientId = val;
+    this.getPage();
+  }
+  get clientId(): number { return this._clientId; }
 
+  private _clientId?: number;
   data: PageResult<BidListItem>;
-//  @Output()  pageChange = new EventEmitter();
-
-  @ViewChildren(NgbdSortableHeader ) headers: QueryList<NgbdSortableHeader >;
-
   sortColumn: string;
   sortDirection: SortDirection;
   page: number = 1;
@@ -38,24 +33,21 @@ export class BidPagedListComponent implements OnInit {
   }
 
   pageChanged() {
-    this.getBidPage();
+    this.getPage();
   }
 
-  getBidPage() {
-    this.apiService.getBids(this.page, this.clientId).subscribe({
-        next: (result: PageResult<BidListItem>) => {
-          this.data = result;
-        },
-        error: (err: any) => {
-          console.log(err);
-        },
-        complete: () => {
-          console.log('complete');
-        }
-      });
+  getPage() {
+    this.apiService.getBids(this.page, this.sortColumn, this.sortDirection, this.clientId).subscribe({
+      next: (result: PageResult<BidListItem>) => {
+        this.data = result;
+      },
+      error: (err: any) => {
+        console.log(err);
+      }
+    });
   }
 
-  onSort({column, direction}: SortEvent) {
+  onSort({ column, direction }: SortEvent) {
     // resetting other headers
     this.headers.forEach(header => {
       if (header.sortable !== column) {

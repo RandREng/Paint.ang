@@ -1,7 +1,7 @@
 <p>client-detail works!</p>
 
-<div *ngIf="jobPage" class="jobs container col-12">
-  <app-job-paged-list [data]="jobPage" (pageChange)="jobPageChange($event)"></app-job-paged-list>
+<div class="jobs container col-12">
+  <app-job-paged-list [clientId]="id"></app-job-paged-list>
 </div>
 
 <div class="bid container col-12">

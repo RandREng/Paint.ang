@@ -1,0 +1,29 @@
+<table class="table paintTable">
+  <thead class="paintTable-header">
+    <tr class="paintTable-titles row">
+      <th class="paintTable-title col-2">Sub Category</th>
+      <th class="paintTable-title col-2">Area</th>
+      <th class="paintTable-title col-5">Desciption</th>
+      <th class="paintTable-title col-1">Quantity</th>
+      <th class="paintTable-title col-1">Unit Cost</th>
+      <th class="paintTable-title col-1">Total</th>
+    </tr>
+  </thead>
+  <tbody class="paintTable-body" *ngFor="let area of data2">
+    <div *ngIf="area.items.length > 0">
+      <tr class="row" style="background-color: dodgerblue;">
+        <td class="col-3">{{area.category}}</td>
+        <td class="col-8"></td>
+        <td class="col-1">{{area.total | currency}}</td>
+      </tr>
+      <tr class="paintTable-items row" *ngFor="let item of area.items">
+        <td class="paintTable-item col-2">{{item.sub}}</td>
+        <td class="paintTable-item col-2">{{item.area}}</td>
+        <td class="paintTable-item col-5">{{item.description}}</td>
+        <td class="paintTable-item col-1">{{item.quantity}}</td>
+        <td class="paintTable-item col-1">{{item.unitCost | currency}}</td>
+        <td class="paintTable-item col-1">{{item.quantity * item.unitCost | currency}}</td>
+      </tr>
+    </div>
+  </tbody>
+</table>

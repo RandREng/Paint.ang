@@ -1,1 +1,24 @@
-<p>bid-details works!</p>
+<div *ngIf="data" class="container col-12">
+  <p>{{data.progjectManager}}</p>
+  <div>{{data.address.line1}}{{data.address.line2 ? " " + data.address.line2 : ""}}, {{data.address.city}}
+    {{data.address.state}}</div>
+  <div>{{data.date | date:'longDate'}}</div>
+  <div>SQ FT {{data.squareFoot}} </div>
+  <div>{{data.renoTotal | currency}}</div>
+
+  <ngb-tabset>
+    <ngb-tab title="By Area">
+      <ng-template ngbTabContent>
+        <app-bid-area [data]="data.areas"></app-bid-area>
+      </ng-template>
+    </ngb-tab>
+    <ngb-tab title="By Category">
+      <ng-template ngbTabContent>
+        <app-bid-items [data]="data.areas"></app-bid-items>
+
+      </ng-template>
+    </ngb-tab>
+  </ngb-tabset>
+
+
+</div>

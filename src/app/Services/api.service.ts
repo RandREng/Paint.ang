@@ -35,12 +35,18 @@ export class ApiService {
       );
   }
 
-  getBids(page: number, clientId?: number): Observable<PageResult<BidListItem>> {
+  getBids(
+      page: number, sortColumn?: string, sortDirection?: string, clientId?: number
+    ): Observable<PageResult<BidListItem>> {
     let url: string;
     if (clientId) {
       url = `${this.url}/api/clients/${clientId}/bids/?page=${page}`;
     } else {
       url = `${this.url}/api/bids/?page=${page}`;
+    }
+    if (sortColumn && sortDirection)
+    {
+      url += `&sortColumn=${sortColumn}&sortDirection=${sortDirection}`;
     }
     return this.http.get<PageResult<BidListItem>>(url)
       .pipe(
@@ -55,12 +61,18 @@ export class ApiService {
       );
   }
 
-  getJobs(page: number, clientId?: number): Observable<PageResult<JobItem>> {
+  getJobs(
+      page: number, sortColumn?: string, sortDirection?: string, clientId?: number
+    ): Observable<PageResult<JobItem>> {
     let url: string;
     if (clientId) {
       url = `${this.url}/api/clients/${clientId}/jobs/?page=${page}`;
     } else {
       url = `${this.url}/api/jobs/?page=${page}`;
+    }
+    if (sortColumn && sortDirection)
+    {
+      url += `&sortColumn=${sortColumn}&sortDirection=${sortDirection}`;
     }
     return this.http.get<PageResult<JobItem>>(url)
       .pipe(

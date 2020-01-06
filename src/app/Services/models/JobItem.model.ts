@@ -1,6 +1,7 @@
 export interface JobItem {
   id: number;
   clientId: number;
+  projectManager: string;
   address: Address;
   city: string;
   state: string;
