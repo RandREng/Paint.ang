@@ -1,18 +1,20 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, ReplaySubject } from 'rxjs';
 import { AlertLevel } from './alert-level.enum';
-import { stringify } from 'querystring';
+
 
 export interface alertItem {
   type: string,
   message: string
 }
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 
 export class AlertService {
 
-  public Alerts = new Subject<alertItem>();
+  public Alerts = new ReplaySubject<alertItem>(12);
 
   constructor() { }
 

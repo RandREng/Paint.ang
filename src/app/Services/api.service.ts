@@ -7,7 +7,6 @@ import { environment } from 'src/environments/environment';
 import { ClientDetails } from './models/ClientDetails.model';
 import { BidListItem, Bid } from './models/BidListItem.model';
 import { AlertService } from 'src/common/alert/alert.service';
-import { stringify } from 'querystring';
 import { JobItem } from './models/JobItem.model';
 import { PageResult } from './models/PageResult.model';
 
