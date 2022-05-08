@@ -5,9 +5,8 @@ import {
     HttpEvent,
     HttpInterceptor, HttpErrorResponse
 } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/fromPromise';
-import 'rxjs/add/operator/mergeMap'
+import { Observable } from 'rxjs';
+
 import {MsalService} from "./msal.service";
 import { BroadcastService } from "./broadcast.service";
 import { AuthResponse } from 'msal';
@@ -46,7 +45,7 @@ export class MsalInterceptor implements HttpInterceptor {
                 err => {
                     if (err instanceof HttpErrorResponse && err.status == 401) {
                         this.auth.clearCacheForScope(accessToken);
-                        this.broadcastService.broadcast('msal:notAuthorized', err.message);
+
                     }
                 })
             }

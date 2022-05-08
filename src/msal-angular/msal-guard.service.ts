@@ -1,16 +1,12 @@
 import { Inject, Injectable } from "@angular/core";
-import {
-    ActivatedRoute,
-    ActivatedRouteSnapshot, CanActivate, Router,
-    RouterStateSnapshot,
-} from "@angular/router";
+
 import { MSAL_CONFIG, MsalService, MSAL_CONFIG_ANGULAR } from "./msal.service";
-import 'rxjs/add/operator/filter';
-import 'rxjs/add/operator/pairwise';
+
 import { Location, PlatformLocation } from "@angular/common";
 import { BroadcastService } from "./broadcast.service";
 import { Configuration, AuthResponse, AuthError } from "msal";
 import { MsalAngularConfiguration } from "./msal-angular.configuration";
+import { ActivatedRoute, ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot } from "@angular/router";
 
 @Injectable()
 export class MsalGuard implements CanActivate {
